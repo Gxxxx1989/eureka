@@ -3,14 +3,33 @@ server:
 eureka:
   client:
     #是否自己注册自己
-    register-with-eureka: true
+    register-with-eureka: false
     #是否拉取信息
-    fetch-registry: true
+    fetch-registry: false
     service-url:
       #eureka 端口
-      defaultZone: http://eureka2.com:7002/eureka/
+      defaultZone: http://eureka1.com:7001/eureka/
   instance:
     hostname: eureka1.com
+  server:
+    # 关闭自我保护
+    enable-self-preservation: false
+# 开启安全验证 其他客户端注册不了
 spring:
   application:
     name: eureka
+  security:
+    user:
+      name: guoxi
+      password: 12345
+#所有节点的信息都上报
+#management:
+#  endpoints:
+#    web:
+#      exposure:
+#        include: *
+#打开关闭节点开关 能关闭远程节点
+#  endpoint:
+#    shutdown:
+#      enabled: true
+#admin 信息来自于actuator
